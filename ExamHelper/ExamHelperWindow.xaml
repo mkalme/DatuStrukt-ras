@@ -1,0 +1,242 @@
+﻿<Window x:Class="ExamHelper.ExamHelperWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamHelper"
+        mc:Ignorable="d"
+        Background="#FF252525"
+        WindowStartupLocation="CenterScreen"
+        Title="Exam Helper" Height="450" Width="800" FontSize="14">
+    <Grid>
+        <TabControl Margin="5">
+            <TabItem Header="Koks">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Koka masīvs" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <TextBox x:Name="TreeInputTextBox" Grid.Column="1" Padding="3, 3" />
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0, 5, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Jautājums" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <ComboBox x:Name="TreeQuestionComboBox" Grid.Column="1" Width="480" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <ComboBoxItem Content="Cik šķautnes pārkāpj max-kaudzes nosacījumus?" />
+                            <ComboBoxItem Content="Cik šķautnes pārkāpj min-kaudzes nosacījumus?" />
+                            <ComboBoxItem Content="Vai tā ir binārā max-kaudze?" />
+                            <ComboBoxItem Content="Vai tā ir binārā min-kaudze?" />
+                        </ComboBox>
+                    </Grid>
+
+                    <Button Content="Execute" Grid.Row="2" Width="110" Height="25px" HorizontalAlignment="Left" Margin="0, 20, 0, 0" Click="TreeExecuteButton_Click" />
+
+                    <Grid Grid.Row="3" Margin="0, 20, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Rezultāts" FontWeight="SemiBold" />
+                        <Button Grid.Column="1" Grid.Row="0" Content="Notīrīt" Margin="0, 0, 0, 2" Height="25px" Width="100" HorizontalAlignment="Right" Click="ListClearButton_Click"  />
+
+                        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <RichTextBox x:Name="TreeResultRichTextBox" IsReadOnly="True" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Steks">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Steka atmiņa" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <TextBox x:Name="StackInputTextBox" Grid.Column="1" Padding="3, 3" />
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0, 5, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="485px" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Darbības" FontWeight="SemiBold" VerticalAlignment="Top" />
+                        <TextBox x:Name="StackCommandTextBox" VerticalScrollBarVisibility="Auto" FontSize="12" Padding="3, 3" TextWrapping="Wrap" AcceptsReturn="True" Width="480px" Height="100px" Grid.Column="1" HorizontalAlignment="Left" />
+                        <TextBlock Grid.Column="2" FontWeight="SemiBold" TextWrapping="Wrap" Margin="5, 0, 0, 0">
+                            Darbības:<LineBreak/>
+                            -> Push(x)<LineBreak/>
+                            -> Pop()<LineBreak/>
+                            -> Top()
+                        </TextBlock>
+                    </Grid>
+
+                    <Button Content="Execute" Grid.Row="2" Width="110" Height="25px" HorizontalAlignment="Left" Margin="0, 20, 0, 0" Click="StackExecuteButton_Click"  />
+
+                    <Grid Grid.Row="3" Margin="0, 20, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Rezultāts (Kas ir atmiņā? | Kāds ir steka saturs?)" FontWeight="SemiBold" />
+                        <Button Grid.Column="1" Grid.Row="0" Content="Notīrīt" Margin="0, 0, 0, 2" Height="25px" Width="100" HorizontalAlignment="Right" Click="StackClearButton_Click" />
+
+                        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <RichTextBox x:Name="StackResultRichTextBox" IsReadOnly="True" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Saraksts">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Saraksta atmiņa" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <TextBox x:Name="ListInputTextBox" Grid.Column="1" Padding="3, 3" />
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0, 5, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="485px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Darbības" FontWeight="SemiBold" VerticalAlignment="Top" />
+                        <TextBox x:Name="ListCommandTextBox" VerticalScrollBarVisibility="Auto" FontSize="12" Padding="3, 3" TextWrapping="Wrap" AcceptsReturn="True" Width="480px" Height="100px" Grid.Column="1" HorizontalAlignment="Left" />
+                        <TextBlock Grid.Column="2" FontWeight="SemiBold" TextWrapping="Wrap" Margin="5, 0, 0, 0">
+                            Darbības:<LineBreak/>
+                            -> PushFront(x)<LineBreak/>
+                            -> PushBack(x)<LineBreak/>
+                            -> PopFront()<LineBreak/>
+                            -> PopBack()
+                        </TextBlock>
+                    </Grid>
+
+                    <Button Content="Execute" Grid.Row="2" Width="110" Height="25px" HorizontalAlignment="Left" Margin="0, 20, 0, 0" Click="ListExecuteButton_Click" />
+
+                    <Grid Grid.Row="3" Margin="0, 20, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Rezultāts (Kas ir atmiņā? | Kāds ir saraksta saturs?)" FontWeight="SemiBold" />
+                        <Button Grid.Column="1" Grid.Row="0" Content="Notīrīt" Margin="0, 0, 0, 2" Height="25px" Width="100" HorizontalAlignment="Right" Click="StackClearButton_Click" />
+
+                        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <RichTextBox x:Name="ListResultRichTextBox" IsReadOnly="True" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Prioritātes rinda">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Rindas atmiņa" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <TextBox x:Name="PriorityQueueInputTextBox" Grid.Column="1" Padding="3, 3" />
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0, 5, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110px" />
+                            <ColumnDefinition Width="485px" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Content="Darbības" FontWeight="SemiBold" VerticalAlignment="Top" />
+                        <TextBox x:Name="PriorityQueueCommandTextBox" VerticalScrollBarVisibility="Auto" FontSize="12" Padding="3, 3" TextWrapping="Wrap" AcceptsReturn="True" Width="480px" Height="100px" Grid.Column="1" HorizontalAlignment="Left" />
+                        <TextBlock Grid.Column="2" FontWeight="SemiBold" TextWrapping="Wrap" Margin="5, 0, 0, 0">
+                            Darbības:<LineBreak/>
+                            -> Insert(x)<LineBreak/>
+                            -> ExtractMax()<LineBreak/>
+                            -> print(ExtractMax())
+                        </TextBlock>
+                    </Grid>
+
+                    <Button Content="Execute" Grid.Row="2" Width="110" Height="25px" HorizontalAlignment="Left" Margin="0, 20, 0, 0" Click="PriorityQueueExecuteButton_Click"  />
+
+                    <Grid Grid.Row="3" Margin="0, 20, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Rezultāts (Kas ir atmiņā? | Kāds ir prioritātes rindas saturs?)" FontWeight="SemiBold" />
+                        <Button Grid.Column="1" Grid.Row="0" Content="Notīrīt" Margin="0, 0, 0, 2" Height="25px" Width="100" HorizontalAlignment="Right" Click="PriorityQueueClearButton_Click" />
+
+                        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <RichTextBox x:Name="PriorityQueueResultRichTextBox" IsReadOnly="True" />
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
